@@ -1,3 +1,27 @@
 #!/usr/bin/env ruby
 require 'soulchild'
-puts Soulchild.slogan
+require 'launchy'
+
+if ARGV.empty?
+  Soulchild.introduction
+  exit
+end
+
+case ARGV[0]
+	when 'github'
+		Launchy.open(Soulchild.github)
+	when 'twitter'
+		Launchy.open(Soulchild.twitter)
+	when 'pixiv'
+		Launchy.open(Soulchild.pixiv)
+	when 'blog'
+		Launchy.open(Soulchild.blog)
+  else
+  	Soulchild.other
+end
+
+if ARGV.length > 1
+	puts "Too many parameters"
+	Soulchild.other
+end
+
